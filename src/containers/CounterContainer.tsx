@@ -22,7 +22,6 @@ const mapStateToProps = (state: any) => {
 };
 
 const mapDispatchToProps = (dispatch: any) => ({
-  //임시 함수
   increase: () => {
     dispatch(increase());
   },
@@ -31,7 +30,11 @@ const mapDispatchToProps = (dispatch: any) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CounterContainer);
+// mapDispatchToProps에 해당하는 파라미터를 함수 형태가 아닌 액션 생성함수로 이루어진 객체 형태로 디스패치할 수 있다. 밑처럼. 이게 더 깔끔한듯
+
+export default connect(mapStateToProps, { increase, decrease })(
+  CounterContainer
+);
 
 // mapStateToProps와 mapDispatchProps에서 반환하는 객체 내부의 값들은 컴포넌트의 props로 전달된다.
 // mapStateToProps : state를 파라미터로 받아오며, 이 값은 현재 스토어가 지니고 있는 상태를 가리킨다.
