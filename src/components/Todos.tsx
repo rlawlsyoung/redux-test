@@ -12,7 +12,6 @@ const Todos = ({
     e.preventDefault();
     onInsert(input);
     onChangeInput(""); // 등록 후 인풋 초기화
-    console.log(todos);
   };
   const onChange = (e: any) => onChangeInput(e.target.value);
 

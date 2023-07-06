@@ -48,32 +48,29 @@ const initialState = {
 };
 
 function todosReducer(state = initialState, action: any) {
-  switch (action.type) {
-    case CHANGE_INPUT:
-      return {
-        ...state,
-        input: action.input,
-      };
-    case INSERT:
-      return {
-        ...state,
-        todos: state.todos.concat(action.todo),
-      };
-    case TOGGLE:
-      return {
-        ...state,
-        todos: state.todos.map((todo) =>
-          todo.id === action.id ? { ...todo, done: !todo.done } : todo
-        ),
-      };
-    case REMOVE:
-      return {
-        ...state,
-        todos: state.todos.filter((todo) => todo.id !== action.id),
-      };
-    default:
-      return state;
-  }
+  const type = action.type;
+
+  if (type === CHANGE_INPUT)
+    return {
+      ...state,
+      input: action.input,
+    };
+  if (type === INSERT)
+    return { ...state, todos: state.todos.concat(action.todo) };
+  if (type === TOGGLE)
+    return {
+      ...state,
+      todos: state.todos.map((todo) =>
+        todo.id === action.id ? { ...todo, done: !todo.done } : todo
+      ),
+    };
+  if (type === REMOVE)
+    return {
+      ...state,
+      todos: state.todos.filter((todo) => todo.id !== action.id),
+    };
+
+  return state;
 }
 
 export default todosReducer;
